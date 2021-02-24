@@ -1,21 +1,55 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import "react-native-gesture-handler";
+import * as React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import {
+  createStackNavigator,
+  CardStyleInterpolators,
+} from "@react-navigation/stack";
+import Home from "./screens/Home.js";
+import Menu from "./screens/Menu.js";
+import Cancelaciones from "./screens/Cancelaciones.js";
+import Compras from "./screens/Compras.js";
+import ElegirCompras from "./screens/ElegirCompras.js";
+import PagarCompras from "./screens/PagarCompras.js";
+import RetirarCompras from "./screens/RetirarCompras.js";
+import DevolucionesCompras from "./screens/DevolucionesCompras.js";
+import ComunicacionWhatsapp from "./screens/ComunicacionWhatsapp.js";
+import EnviosAyuda from "./screens/EnviosAyuda.js";
+import RetirosAyuda from "./screens/RetirosAyuda.js";
 
-export default function App() {
+const Stack = createStackNavigator();
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator
+        headerMode="none"
+        screenOptions={{
+          gestureDirection: "horizontal",
+          gestureEnabled: true,
+          cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        }}
+      >
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Menu" component={Menu} />
+        <Stack.Screen name="Cancelaciones" component={Cancelaciones} />
+        <Stack.Screen name="Compras" component={Compras} />
+        <Stack.Screen name="ElegirCompras" component={ElegirCompras} />
+        <Stack.Screen name="PagarCompras" component={PagarCompras} />
+        <Stack.Screen name="RetirarCompras" component={RetirarCompras} />
+        <Stack.Screen
+          name="DevolucionesCompras"
+          component={DevolucionesCompras}
+        />
+        <Stack.Screen
+          name="ComunicacionWhatsapp"
+          component={ComunicacionWhatsapp}
+        />
+        <Stack.Screen name="EnviosAyuda" component={EnviosAyuda} />
+        <Stack.Screen name="RetirosAyuda" component={RetirosAyuda} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
